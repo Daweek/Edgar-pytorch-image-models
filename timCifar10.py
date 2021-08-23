@@ -184,7 +184,7 @@ def main():
     #rank = int(os.getenv('PMIX_RANK', '0'))
     #world_size = 1
     #print("Node:{} \n".format(rank))
-    ip = str(os.system('/usr/sbin/ip a show dev tofu0 | grep -w inet | cut -d " " -f 6 | cut -d "/" -f 1'))
+    ip = str(os.system('/usr/sbin/ip a show dev bond0 | grep -w inet | cut -d " " -f 6 | cut -d "/" -f 1'))
     print(ip)
 
     dist.init_process_group("mpi", init_method="env://")

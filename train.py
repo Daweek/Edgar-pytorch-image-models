@@ -336,7 +336,9 @@ def main():
         ngpus_per_node = torch.cuda.device_count()
         device = rank % ngpus_per_node
         torch.cuda.set_device(device)
-        torch.distributed.init_process_group('nccl', init_method=method, world_size=world_size, rank=rank)
+        #torch.distributed.init_process_group('nccl', init_method=method, world_size=world_size, rank=rank)
+        torch.distributed.init_process_group('nccl', init_method="env://", world_size=world_size, rank=rank)
+        #torch.distributed.init_process_group('nccl', init_method="env://")
         args.local_rank = device
         args.global_rank = rank
         args.device = device
